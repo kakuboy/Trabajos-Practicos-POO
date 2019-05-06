@@ -205,47 +205,47 @@ bool validarAreas(int mat[100][100], int nfila, int ncolumna){
     bool resultado = true;
     for(int i=0; i<nfila; i++){
         for(int j=0; j<ncolumna; j++){
-            if(i==0 && j==0){//ESQUINA SUPERIOR IZQUIERDA
+            if(i==0 && j==0){/*Esquina Superior Izquierda*/
                 resultado = resultado && (mat[0][0] == mat[0][1] || mat[0][0] == mat[1][0]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(i==nfila-1 && j==0){//ESQUINA INFERIOR IZQUIEDA
+            }else if(i==nfila-1 && j==0){/*Esquina Inferior Izquierda*/
                 resultado = resultado && (mat[nfila-1][0] == mat[nfila-1][1] || mat[nfila-1][0] == mat[nfila-2][0]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(i==0 && j==nfila-1){//ESQUINA SUPERIOR DERECHA
-                resultado = resultado && (mat[0][ncolumna] == mat[0][ncolumna-2] || mat[0][ncolumna-1] == mat[1][ncolumna-1]);
+            }else if(i==0 && j==nfila-1){/*Esquina Superior Derecha*/
+                resultado = resultado && (mat[0][ncolumna-1] == mat[0][ncolumna-2] || mat[0][ncolumna-1] == mat[1][ncolumna-1]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(i==nfila-1 && j==nfila-1){//ESQUINA INFERIOR DERECHA
-                resultado = resultado && (mat[nfila-1][ncolumna] == mat[nfila-2][ncolumna-1] || mat[nfila-1][ncolumna-1] == mat[nfila-1][ncolumna-2]);
+            }else if(i==nfila-1 && j==nfila-1){/*Esquina Inferior Derecha*/
+                resultado = resultado && (mat[nfila-1][ncolumna-1] == mat[nfila-2][ncolumna-1] || mat[nfila-1][ncolumna-1] == mat[nfila-1][ncolumna-2]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(i==0 && (j>0 || j<ncolumna-1)){//ELEMENTOS superiores
+            }else if(i==0 && (j>0 || j<ncolumna-1)){/*//Elementos Superiores*/
                 resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i+1][j]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(i==nfila-1 && (j>0 || j<ncolumna-1)){//ELEMENTOS inferiores
+            }else if(i==nfila-1 && (j>0 || j<ncolumna-1)){/*Elementos Inferiores*/
                 resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(j==0 && (i>0 || i<nfila-1)){//ELEMENTOS izquierdos
+            }else if(j==0 && (i>0 || i<nfila-1)){/*Elementos Izquierdos*/
                 resultado = resultado && (mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
                 if(resultado == false){
                     return false;
                 }
-            }else if(j==nfila-1 && (i>0 || i<nfila-1)){//ELEMENTOS derechos
+            }else if(j==ncolumna-1 && (i>0 || i<ncolumna-1)){/*Elementos Derechos*/
                 resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
                 if(resultado == false){
                     return false;
                 }
-            }else {
+            }else {/*Resto De Elementos*/
                 resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
                 if(resultado == false){
                     return false;
