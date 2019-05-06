@@ -203,19 +203,57 @@ void llenarMatriz2Numeros(int nfila,int ncolumna){
 
 bool validarAreas(int mat[100][100], int nfila, int ncolumna){
     bool resultado = true;
-
-    for(int i=0;i<nfila;i++){
-        for(int j=0;j<ncolumna;j++){
-            resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
+    for(int i=0; i<nfila; i++){
+        for(int j=0; j<ncolumna; j++){
+            if(i==0 && j==0){//ESQUINA SUPERIOR IZQUIERDA
+                resultado = resultado && (mat[0][0] == mat[0][1] || mat[0][0] == mat[1][0]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(i==nfila-1 && j==0){//ESQUINA INFERIOR IZQUIEDA
+                resultado = resultado && (mat[nfila-1][0] == mat[nfila-1][1] || mat[nfila-1][0] == mat[nfila-2][0]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(i==0 && j==nfila-1){//ESQUINA SUPERIOR DERECHA
+                resultado = resultado && (mat[0][ncolumna] == mat[0][ncolumna-2] || mat[0][ncolumna-1] == mat[1][ncolumna-1]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(i==nfila-1 && j==nfila-1){//ESQUINA INFERIOR DERECHA
+                resultado = resultado && (mat[nfila-1][ncolumna] == mat[nfila-2][ncolumna-1] || mat[nfila-1][ncolumna-1] == mat[nfila-1][ncolumna-2]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(i==0 && (j>0 || j<ncolumna-1)){//ELEMENTOS superiores
+                resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i+1][j]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(i==nfila-1 && (j>0 || j<ncolumna-1)){//ELEMENTOS inferiores
+                resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(j==0 && (i>0 || i<nfila-1)){//ELEMENTOS izquierdos
+                resultado = resultado && (mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
+                if(resultado == false){
+                    return false;
+                }
+            }else if(j==nfila-1 && (i>0 || i<nfila-1)){//ELEMENTOS derechos
+                resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
+                if(resultado == false){
+                    return false;
+                }
+            }else {
+                resultado = resultado && (mat[i][j] == mat[i][j-1] || mat[i][j] == mat[i][j+1] || mat[i][j] == mat[i-1][j] || mat[i][j] == mat[i+1][j]);
+                if(resultado == false){
+                    return false;
+                }
+            }
         }
     }
-
-    if(resultado == false){
-        return false;
-    }
-    else{
-        return true;
-    }
+    return true;
 
 }
 
